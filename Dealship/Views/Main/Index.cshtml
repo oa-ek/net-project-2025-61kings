@@ -1,0 +1,19 @@
+﻿@{
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/main.css" asp-append-version="true" />
+}
+
+<div class="video-container">
+    <video autoplay loop muted playsinline id="bg-video">
+        <source src="~/videos/background.mp4" type="video/mp4">
+        Ваш браузер не підтримує відео.
+    </video>
+</div>
+
+<div class="text-container">
+    <h1>Інтернет-автосалон AUTOCAR</h1>
+    <p>Автомобілі, електро-автомобілі. Сервіс і запчастини. Авто в кредит.</p>
+</div>
