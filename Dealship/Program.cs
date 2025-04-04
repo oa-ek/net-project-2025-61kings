@@ -1,18 +1,27 @@
+п»їusing Dealship.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Налаштування DbContext без appsettings.json
+// РќР°Р»Р°С€С‚СѓРІР°РЅРЅСЏ DbContext Р±РµР· appsettings.json
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer("Server=DESKTOP-R6S1APS;Database=Dealship;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True"));
+    options.UseSqlServer("Server=DESKTOP-VS5ETFD;Database=Dealship;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True"));
 
-builder.Services.AddControllersWithViews();  // Підключення підтримки MVC
+builder.Services.AddControllersWithViews();  // РџС–РґРєР»СЋС‡РµРЅРЅСЏ РїС–РґС‚СЂРёРјРєРё MVC
 
 var app = builder.Build();
 
-// Налаштування каналу запитів
+// рџ’ѕ Р†РЅС–С†С–Р°Р»С–Р·Р°С†С–СЏ Р±Р°Р·Рё С‚Р° СЃС‚РІРѕСЂРµРЅРЅСЏ Р°РґРјС–РЅР°
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var context = services.GetRequiredService<AppDbContext>();
+    DbInitializer.Initialize(context); // в¬…пёЏ РЅР°С€ РјРµС‚РѕРґ
+}
+
+// РќР°Р»Р°С€С‚СѓРІР°РЅРЅСЏ РєР°РЅР°Р»Сѓ Р·Р°РїРёС‚С–РІ
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
@@ -30,9 +39,10 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-// Налаштування маршрутів
+// РќР°Р»Р°С€С‚СѓРІР°РЅРЅСЏ РјР°СЂС€СЂСѓС‚С–РІ
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Main}/{action=Index}/{id?}");
+    pattern: "{controller=Auth}/{action=Login}/{id?}");
+
 
 app.Run();

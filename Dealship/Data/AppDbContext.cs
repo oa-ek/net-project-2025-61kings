@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 
 public class AppDbContext : DbContext
 {
-    // Конструктор для реального використання додатку
     public AppDbContext(DbContextOptions<AppDbContext> options)
         : base(options)
     {
@@ -18,7 +17,9 @@ public class AppDbContext : DbContext
     public DbSet<Customer> Customers { get; set; }
     public DbSet<Order> Orders { get; set; }
 
-    // Налаштування зв'язків між таблицями
+    // ➕ Додаємо таблицю користувачів (логін/реєстрація)
+    public DbSet<User> Users { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
@@ -52,5 +53,10 @@ public class AppDbContext : DbContext
             .HasOne(o => o.Car)
             .WithMany()
             .HasForeignKey(o => o.CarId);
+
+        // Унікальний Email
+        modelBuilder.Entity<User>()
+            .HasIndex(u => u.Email)
+            .IsUnique();
     }
 }
