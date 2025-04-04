@@ -1,0 +1,21 @@
+﻿@model Dealship.Models.User
+
+<h2>Реєстрація</h2>
+
+<form asp-action="Register" method="post">
+    <label>Повне ім’я:</label>
+    <input asp-for="FullName" required />
+    <br />
+    <label>Email:</label>
+    <input asp-for="Email" type="email" required />
+    <br />
+    <label>Пароль:</label>
+    <input name="password" type="password" required />
+    <br />
+    <button type="submit">Зареєструватися</button>
+</form>
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <p style="color:red">Помилка: @ViewData.ModelState[string.Empty]?.Errors.FirstOrDefault()?.ErrorMessage</p>
+}
