@@ -26,7 +26,7 @@
 
 .text-container {
     position: absolute;
-    top: 10%; 
+    top: 5%; 
     left: 50%; 
     transform: translate(-50%, -50%); 
     text-align: center;
@@ -41,27 +41,65 @@
         font-weight: bold;
     }
 
-    .text-container p {
-        font-size: 1.2em;
-        margin-top: 10px;
-    }
-
-.white-box {
-    width: 100%;
-    padding: 30px 0;
-    background-color: white;
+.text-section {
     text-align: center;
-    z-index: 1;
-    box-sizing: border-box;
+    padding: 50px 0;
+    background-color: rgba(0, 0, 0, 0.3); 
+    color: white;
 }
 
-.photo-container {
-    width: 100%;
-    padding: 50px 0;
+    .text-section h2 {
+        font-size: 3rem; 
+        margin-bottom: 30px;
+    }
+
+.options-row {
+    display: flex;
+    justify-content: center;
+    gap: 40px; 
+}
+
+.option {
     text-align: center;
+}
+
+    .option p {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
+
+    .option .btn {
+        padding: 10px 20px;
+        font-size: 1rem; 
+        width: 300px;
+        border-radius: 5px;
+        cursor: pointer;
+        border: 2px solid white; 
+        background-color: transparent; 
+        color: white; 
+        transition: all 0.3s ease;
+    }
+
+    .option .btn-primary {
+        border-color: white; 
+    }
+
+        .option .btn-primary:hover {
+            background-color: #1d3c72;
+            color: white;
+        }
+
+.photo-container {
+    text-align: center;
+    margin-top: 50px;
 }
 
     .photo-container img {
-        max-width: 100%;
+        width: 100%;
+        max-width: 600px; 
         height: auto;
+        border-radius: 10px;
     }
+
+
+

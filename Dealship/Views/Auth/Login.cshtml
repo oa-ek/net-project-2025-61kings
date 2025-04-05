@@ -9,29 +9,34 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />
 </head>
 <body>
-    <h2>Вхід</h2>
+    <div class="login-container">
+        <h1>Вхід в особистий кабінет</h1>
 
-    <form asp-action="Login" method="post">
-        <label for="email">Email:</label>
-        <input id="email" name="email" type="email" required />
-        <br />
+        <form asp-action="Login" method="post">
+            <div>
+                <label for="email">Email:</label>
+                <input id="email" name="email" type="email" required />
+            </div>
 
-        <label for="password">Пароль:</label>
-        <input id="password" name="password" type="password" required />
-        <br />
+            <div>
+                <label for="password">Пароль:</label>
+                <input id="password" name="password" type="password" required />
+            </div>
 
-        <button type="submit">Увійти</button>
-    </form>
+            <button type="submit">Увійти</button>
+        </form>
 
-    @if (!ViewData.ModelState.IsValid)
-    {
-        <p style="color:red">
-            Помилка: @(ViewData.ModelState.Values.SelectMany(v => v.Errors).FirstOrDefault()?.ErrorMessage)
-        </p>
-    }
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <p class="error-message">
+                Помилка: @(ViewData.ModelState.Values.SelectMany(v => v.Errors).FirstOrDefault()?.ErrorMessage)
+            </p>
+        }
 
-    <p>Ще не маєте акаунта? <a asp-controller="Auth" asp-action="Register">Зареєструватися</a></p>
+        <p>Ще не маєте акаунта? <a asp-controller="Auth" asp-action="Register">Зареєструватися</a></p>
+    </div>
 </body>
 </html>
