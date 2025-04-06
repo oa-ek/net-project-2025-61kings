@@ -4,71 +4,94 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h1>Create Car</h1>
 
-<h4>Car</h4>
-<hr />
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
+    <div class="col-md-6">
+        <form asp-action="Create" method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
             <div class="form-group">
-                <label asp-for="Brand" class="control-label"></label>
+                <label asp-for="Brand"></label>
                 <input asp-for="Brand" class="form-control" />
                 <span asp-validation-for="Brand" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <label asp-for="Model" class="control-label"></label>
+                <label asp-for="Model"></label>
                 <input asp-for="Model" class="form-control" />
                 <span asp-validation-for="Model" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <label asp-for="Year" class="control-label"></label>
+                <label asp-for="Year"></label>
                 <input asp-for="Year" class="form-control" />
                 <span asp-validation-for="Year" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <label asp-for="Price" class="control-label"></label>
+                <label asp-for="Price"></label>
                 <input asp-for="Price" class="form-control" />
                 <span asp-validation-for="Price" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <label asp-for="Mileage" class="control-label"></label>
+                <label asp-for="Mileage"></label>
                 <input asp-for="Mileage" class="form-control" />
                 <span asp-validation-for="Mileage" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <label asp-for="EngineId" class="control-label"></label>
-                <select asp-for="EngineId" class ="form-control" asp-items="ViewBag.EngineId"></select>
+                <label asp-for="ImageFile">Зображення</label>
+                <input type="file" name="ImageFile" class="form-control" />
+                <span asp-validation-for="ImageFile" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <label asp-for="TransmissionId" class="control-label"></label>
-                <select asp-for="TransmissionId" class ="form-control" asp-items="ViewBag.TransmissionId"></select>
+                <label asp-for="EngineId"></label>
+                <select asp-for="EngineId" asp-items="ViewBag.EngineId" class="form-control">
+                    <option value="">-- Виберіть двигун --</option>
+                </select>
+                <span asp-validation-for="EngineId" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <label asp-for="FuelTypeId" class="control-label"></label>
-                <select asp-for="FuelTypeId" class ="form-control" asp-items="ViewBag.FuelTypeId"></select>
+                <label asp-for="TransmissionId"></label>
+                <select asp-for="TransmissionId" asp-items="ViewBag.TransmissionId" class="form-control">
+                    <option value="">-- Виберіть трансмісію --</option>
+                </select>
+                <span asp-validation-for="TransmissionId" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <label asp-for="ColorId" class="control-label"></label>
-                <select asp-for="ColorId" class ="form-control" asp-items="ViewBag.ColorId"></select>
+                <label asp-for="FuelTypeId"></label>
+                <select asp-for="FuelTypeId" asp-items="ViewBag.FuelTypeId" class="form-control">
+                    <option value="">-- Виберіть тип палива --</option>
+                </select>
+                <span asp-validation-for="FuelTypeId" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <label asp-for="Image" class="control-label"></label>
-                <input asp-for="Image" class="form-control" />
-                <span asp-validation-for="Image" class="text-danger"></span>
+                <label asp-for="ColorId"></label>
+                <select asp-for="ColorId" asp-items="ViewBag.ColorId" class="form-control">
+                    <option value="">-- Виберіть колір --</option>
+                </select>
+                <span asp-validation-for="ColorId" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+
+            <div class="form-group mt-3">
+                <button type="submit" class="btn btn-primary">Створити</button>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+<div class="mt-3">
+    <a asp-action="Index">← Назад до списку</a>
 </div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
+

@@ -16,14 +16,13 @@ public class AppDbContext : DbContext
     public DbSet<Color> Colors { get; set; }
     public DbSet<Customer> Customers { get; set; }
     public DbSet<Order> Orders { get; set; }
-
-    // ➕ Додаємо таблицю користувачів (логін/реєстрація)
     public DbSet<User> Users { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
 
+        // Зв’язки
         modelBuilder.Entity<Car>()
             .HasOne(c => c.Engine)
             .WithMany()
@@ -53,6 +52,15 @@ public class AppDbContext : DbContext
             .HasOne(o => o.Car)
             .WithMany()
             .HasForeignKey(o => o.CarId);
+
+        // Decimal поля — задаємо точність
+        modelBuilder.Entity<Car>()
+            .Property(c => c.Price)
+            .HasPrecision(18, 2);
+
+        modelBuilder.Entity<Order>()
+            .Property(o => o.TotalPrice)
+            .HasPrecision(18, 2);
 
         // Унікальний Email
         modelBuilder.Entity<User>()
