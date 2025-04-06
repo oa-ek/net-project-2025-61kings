@@ -32,13 +32,12 @@
 
     .navbar .nav-link,
     .navbar .navbar-brand {
-        color: white !important;
         text-decoration: none;
-        position: relative; /* для коректної роботи псевдо-елемента */
+        position: relative; 
     }
 
         .navbar .nav-link:hover {
-            color: #258cfb;
+            color: #258cfb !important;
         }
 
         .navbar .nav-link::after {
@@ -48,19 +47,64 @@
             bottom: 0;
             width: 100%;
             height: 2px;
-            background-color: #1d3c72; /* темно-синій колір */
-            transform: scaleX(0); /* спочатку лінія невидима */
+            background-color: #1d3c72; 
+            transform: scaleX(0); 
             transition: transform 0.3s ease-in-out;
         }
 
         .navbar .nav-link:hover::after {
-            transform: scaleX(1); /* розгортається при наведенні */
+            transform: scaleX(1); 
+        }
+
+        .navbar .nav-link.text-white {
+            color: white !important;
+        }
+
+        .navbar .nav-link.text-dark {
+            color: black !important;
         }
 
 footer {
-    background: #f8f9fa;
-    padding: 10px 0;
+    background: #F2F2F2;
+    padding: 50px 0;
     text-align: center;
     width: 100%;
     position: relative;
 }
+
+    footer .row {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    footer .col-md-4 {
+        width: 33%;
+    }
+
+    footer .footer-column {
+        display: flex;
+        flex-direction: column;
+        align-items: center; 
+        justify-content: flex-start; 
+        height: 100%;
+    }
+
+    footer .footer-images {
+        position: absolute;
+        bottom: 10px; 
+        left: 20px; 
+        display: flex;
+        gap: 20px;
+    }
+
+    footer p {
+        margin: 5px 0;
+        color: black;
+    }
+
+    footer .footer-column p:first-child {
+        color: #4F4F4F; 
+    }
+
+
+
