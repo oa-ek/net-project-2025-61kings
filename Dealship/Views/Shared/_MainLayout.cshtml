@@ -1,11 +1,22 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+    var logoPath = "~/images/Logo.png";
+    var navTextClass = "text-white"; 
+
+    if (currentController == "Auto")
+    {
+        logoPath = "~/images/LogoBlack.png";
+        navTextClass = "text-dark"; 
+    }
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site2.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/css/site2.css" asp-append-version="true" />
     @RenderSection("Styles", required: false)
 </head>
 <body>
@@ -13,7 +24,7 @@
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Main" asp-action="Index">
-                    <img src="~/images/Logo.png" alt="Dealship Logo" height="100">
+                    <img src="@Url.Content(logoPath)" alt="Dealship Logo" height="100" />
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -22,24 +33,29 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark fw-bold" asp-area="" asp-controller="Main" asp-action="Index">Головна</a>
+                            <a class="nav-link @navTextClass fw-bold" asp-area="" asp-controller="Main" asp-action="Index">Головна</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark fw-bold" asp-area="" asp-controller="Auto" asp-action="Index">Автомобілі</a>
+                            <a class="nav-link @navTextClass fw-bold" asp-area="" asp-controller="Auto" asp-action="Index">Автомобілі</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark fw-bold" asp-area="" asp-controller="ElectroAuto" asp-action="Index">Електромобілі</a>
+                            <a class="nav-link @navTextClass fw-bold" asp-area="" asp-controller="ElectroAuto" asp-action="Index">Електромобілі</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark fw-bold" asp-area="" asp-controller="Contact" asp-action="Index">Контакти</a>
+                            <a class="nav-link @navTextClass fw-bold" asp-area="" asp-controller="Contact" asp-action="Index">Контакти</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark fw-bold" asp-area="" asp-controller="Posluga" asp-action="Index">Фінансові послуги</a>
+                            <a class="nav-link @navTextClass fw-bold" asp-area="" asp-controller="Posluga" asp-action="Index">Фінансові послуги</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                            <a class="nav-link text-dark fw-bold" asp-area="" asp-controller="Auth" asp-action="Login">Вхід</a>
+                            <button id="themeToggleBtn" class="btn">
+                                <img id="themeIcon" src="images/theme-icon.png" alt="Change Theme" style="width: 24px; height: 24px;">
+                            </button>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @navTextClass fw-bold" asp-area="" asp-controller="Auth" asp-action="Login">Вхід</a>
                         </li>
                     </ul>
                 </div>
@@ -55,8 +71,39 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2025 - Dealship - <a asp-area="" asp-controller="Main" asp-action="Privacy">Privacy</a>
+            <div class="row">
+                <div class="col-md-4 footer-column">
+                    <p>Контакти</p>
+                    <p>Знайти дилера</p>
+                    <p>Зворотній зв'язок</p>
+                    <p>Сервісне партнерство з нами</p>
+                </div>
+                <div class="col-md-4 footer-column">
+                    <p>Швидкі посилання</p>
+                    <p>Замовити тест-драйв</p>
+                    <p>Запис на сервіс</p>
+                    <p>Прайс-лист</p>
+                    <p>Автомобілі в наявності</p>
+                    <p>Інтернет-магазин AUTOCAR</p>
+                </div>
+                <div class="col-md-4 footer-column">
+                    <p>Світ AUTOCAR</p>
+                    <p>Благодійність АВТ Баварія під час війни</p>
+                    <div class="footer-images">
+                        <a href="https://www.facebook.com" target="_blank">
+                            <img src="~/images/facebook.png" alt="Facebook" style="width: 16px; height: 24px;">
+                        </a>
+                        <a href="https://www.instagram.com" target="_blank">
+                            <img src="~/images/instagram.png" alt="Instagram" style="width: 24px; height: 24px;">
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </footer>
+
+
+    <script src="~/js/site2.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
