@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Dealship.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250406133711_fixmodels2")]
-    partial class fixmodels2
+    [Migration("20250408111922_InittialCreate")]
+    partial class InittialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
