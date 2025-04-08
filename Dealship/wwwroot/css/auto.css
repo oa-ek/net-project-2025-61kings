@@ -1,21 +1,21 @@
-﻿body.dark-theme {
+﻿﻿body.dark-theme {
     background-color: black;
     color: white;
 }
 
-    body.dark-theme .navbar {
-        background-color: black !important;
-        border-bottom: 1px solid white;
+body.dark-theme .navbar {
+    background-color: black !important;
+    border-bottom: 1px solid white;
+}
+
+    body.dark-theme .navbar .nav-link {
+        color: white !important;
     }
 
-        body.dark-theme .navbar .nav-link {
-            color: white !important;
-        }
+body.dark-theme .navbar-brand img {
+    content: url('/images/Logo.png');
+}
 
-    body.dark-theme .navbar-brand img {
-        content: url('/images/Logo.png');
-    }
-
-    body.dark-theme #themeIcon {
-        content: url('/images/theme-icon.png');
-    }
+body.dark-theme #themeIcon {
+    content: url('/images/theme-icon.png');
+}

@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Dealship.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250408111922_InittialCreate")]
-    partial class InittialCreate
+    [Migration("20250408124502_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Налаштування DbContext без appsettings.json
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer("Server=DESKTOP-VS5ETFD;Database=Dealship;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True"));
+    options.UseSqlServer("Server=DESKTOP-R6S1APS;Database=Dealship;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True"));
 
 builder.Services.AddControllersWithViews();  // Підключення підтримки MVC
 
