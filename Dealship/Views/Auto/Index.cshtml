@@ -1,7 +1,63 @@
-﻿﻿@{
+﻿@model List<Dealship.Models.Car>
+
+@{
+    ViewData["Title"] = "Автомобілі в наявності";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
+    var carCount = Model.Count();
 }
 
 @section Styles {
     <link rel="stylesheet" href="~/css/auto.css" asp-append-version="true" />
 }
+
+<h1>Оберіть свій Автомобіль</h1>
+
+<div class="filter-section">
+    <h3>Фільтр</h3>
+    <!-- Тут можна додати елементи фільтру, наприклад: -->
+    <!-- Фільтр за брендом, типом палива і т.д. -->
+</div>
+
+<p><strong><u>@carCount</u></strong> Знайдено</p>
+
+<hr class="divider-line" />
+
+<div class="car-list">
+    @foreach (var car in Model)
+    {
+        <div class="car-item">
+            <div class="car-image">
+                @if (!string.IsNullOrEmpty(car.Image))
+                {
+                    <img src="@Url.Content(car.Image)" alt="@car.Brand @car.Model" width="300" />
+                }
+            </div>
+            <div class="car-info">
+                <h3>@car.Brand @car.Model</h3>
+                <p class="year">@car.Year</p>
+                <div class="car-characteristics">
+                    <div class="characteristic">
+                        <p class="label">Двигун:</p>
+                        <p>@car.Engine.Type</p>
+                    </div>
+                    <div class="characteristic">
+                        <p class="label">Коробка передач:</p>
+                        <p>@car.Transmission.Type</p>
+                    </div>
+                    <div class="characteristic">
+                        <p class="label">Паливо:</p>
+                        <p>@car.FuelType.Name</p>
+                    </div>
+                    <div class="characteristic">
+                        <p class="label">Колір:</p>
+                        <p>@car.Color.Name</p>
+                    </div>
+                </div>
+                <p class="price">
+                    <span class="price-label">Ціна:</span>
+                    <span class="price-value">@car.Price грн</span>
+                </p>
+            </div>
+        </div>
+    }
+</div>
