@@ -1,28 +1,29 @@
-﻿using System.Diagnostics;
+﻿using Dealship.Models;
 using Microsoft.AspNetCore.Mvc;
-using Dealship.Models;
+using System;
+using System.Linq;
 
-namespace Dealship.Controllers;
-
-public class MainController : Controller
+namespace Dealship.Controllers
 {
-    private readonly ILogger<MainController> _logger;
-
-    public MainController(ILogger<MainController> logger)
+    public class MainController : Controller
     {
-        _logger = logger;
-    }
+        private readonly AppDbContext _context;
 
-    public IActionResult Index()
-    {
-        return View();
-    }
+        public MainController(AppDbContext context)
+        {
+            _context = context;
+        }
 
+        public IActionResult Index()
+        {
+            var cars = _context.Cars
+                .Where(c => !string.IsNullOrEmpty(c.Image))
+                .ToList();
 
+            var random = new Random();
+            var selectedCars = cars.OrderBy(c => random.Next()).Take(2).ToList();
 
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View(selectedCars); 
+        }
     }
 }
