@@ -1,4 +1,6 @@
-﻿@{
+﻿@model List<Dealship.Models.Car>
+
+@{
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
@@ -38,10 +40,23 @@
     </div>
 </div>
 
-<div class="photo-container">
-    <img src="~/images/Foto1.jpg" alt="Фотографія" class="img-fluid">
+<div class="banner-section">
+    @foreach (var car in Model)
+    {
+        <div class="car-banner">
+            <img src="@Url.Content(car.Image)" alt="@car.Brand @car.Model" class="banner-img" />
+            <div class="text-overlay">
+                <h2>@car.Brand @car.Model</h2>
+                <p>@car.Price грн</p>
+                <a href="#" class="btn btn-primary">Дізнатися більше</a> 
+            </div>
+        </div>
+    }
 </div>
 
-<div class="photo-container">
-    <img src="~/images/Foto1.jpg" alt="Фотографія" class="img-fluid">
+<hr />
+
+<div class="choose-section d-flex align-items-center mt-4 ms-3">
+    <span class="choose-label">Оберіть свій авто</span>
+    <a asp-controller="Auto" asp-action="Index" class="choose-link ms-3">Автомобілі</a>
 </div>
